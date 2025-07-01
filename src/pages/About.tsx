@@ -37,32 +37,32 @@ const About = () => {
   return (
     <Layout>
       {/* Hero Banner */}
-      <section className="bg-primary text-primary-foreground py-16 lg:py-24">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center animate-fade-in">
-          <h1 className="font-display text-4xl lg:text-hero font-bold mb-6">
+      <section className="bg-primary text-white professional-spacing">
+        <div className="professional-container text-center animate-fade-in">
+          <h1 className="font-display text-hero font-bold mb-8 text-white">
             Impact Initiative Nepal
           </h1>
-          <p className="text-xl lg:text-2xl max-w-3xl mx-auto opacity-90">
+          <p className="text-body-lg max-w-4xl mx-auto text-white/90 leading-relaxed">
             Transforming Nepal's economic landscape through strategic empowerment of women entrepreneurs and local business communities
           </p>
         </div>
       </section>
 
       {/* Mission Statement */}
-      <section className="py-16 lg:py-24 bg-background">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto text-center animate-fade-in">
-            <h2 className="font-display text-3xl lg:text-h1 font-bold text-foreground mb-8">
+      <section className="professional-spacing bg-background">
+        <div className="professional-container">
+          <div className="max-w-5xl mx-auto text-center animate-fade-in">
+            <h2 className="font-display text-h1 font-bold text-foreground mb-10">
               Our Mission
             </h2>
-            <div className="prose prose-lg max-w-none text-muted-foreground space-y-6">
-              <p className="text-lg leading-relaxed">
+            <div className="prose-professional space-y-8">
+              <p className="text-body-lg leading-relaxed text-muted-foreground">
                 Impact Initiative Nepal (IIN) is a purpose-driven non-profit organization committed to unlocking Nepal's economic potential and strategically founded to be a transformative force for Nepal's economy by empowering local entrepreneurs to lead the charge toward inclusive growth and national prosperity.
               </p>
-              <p className="text-lg leading-relaxed">
+              <p className="text-body-lg leading-relaxed text-muted-foreground">
                 We support the Government of Nepal's ambitious vision of transitioning to a middle-income country by 2030 through targeted interventions that address systemic challenges including limited access to financing, inadequate business services, and the need for enhanced managerial capabilities among entrepreneurs.
               </p>
-              <p className="text-lg leading-relaxed">
+              <p className="text-body-lg leading-relaxed text-muted-foreground">
                 Our comprehensive approach focuses on creating an enabling environment where businesses can thrive, jobs are created, and economic opportunities are accessible to all, particularly women and marginalized communities who have historically been underrepresented in Nepal's economic landscape.
               </p>
             </div>
@@ -71,30 +71,30 @@ const About = () => {
       </section>
 
       {/* Impact Pillars */}
-      <section className="py-16 lg:py-24 bg-muted">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12 animate-fade-in">
-            <h2 className="font-display text-3xl lg:text-h1 font-bold text-foreground mb-4">
+      <section className="professional-spacing bg-muted">
+        <div className="professional-container">
+          <div className="text-center mb-16 animate-fade-in">
+            <h2 className="font-display text-h1 font-bold text-foreground mb-6">
               Five Impact Pillars
             </h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-body-lg text-muted-foreground max-w-3xl mx-auto">
               Our strategic framework for creating sustainable economic transformation across Nepal
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+          <div className="professional-grid grid-cols-1 lg:grid-cols-2 max-w-7xl mx-auto">
             {pillars.map((pillar, index) => {
               const IconComponent = pillar.icon;
               return (
                 <Card 
                   key={index} 
-                  className="card-shadow border-0 h-full animate-fade-in"
+                  className="card-professional h-full animate-fade-in"
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
                   <CardHeader>
-                    <div className="flex items-center space-x-4">
-                      <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
-                        <IconComponent className="h-6 w-6 text-primary" />
+                    <div className="flex items-center space-x-6">
+                      <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center">
+                        <IconComponent className="h-8 w-8 text-primary" />
                       </div>
                       <CardTitle className="font-display text-xl font-bold text-foreground">
                         {pillar.title}
@@ -114,17 +114,17 @@ const About = () => {
       </section>
 
       {/* Call to Action */}
-      <section className="py-16 lg:py-24 bg-background">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="professional-spacing bg-background">
+        <div className="professional-container">
           <div className="text-center animate-fade-in">
-            <div className="bg-gradient-to-r from-primary/5 to-accent/5 rounded-xl p-8 lg:p-12 max-w-4xl mx-auto">
-              <h3 className="font-display text-3xl lg:text-h2 font-bold text-foreground mb-4">
+            <div className="cta-section max-w-5xl mx-auto">
+              <h3 className="font-display text-h2 font-bold text-foreground mb-6">
                 Join the Movement
               </h3>
-              <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
+              <p className="text-body-lg text-muted-foreground mb-10 max-w-3xl mx-auto">
                 Be part of Nepal's economic transformation. Whether you're an entrepreneur, supporter, or advocate, there's a place for you in our mission to create lasting change.
               </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <div className="flex flex-col sm:flex-row gap-6 justify-center">
                 <Button variant="hero" size="lg" asChild>
                   <Link to="/get-involved">Get Involved</Link>
                 </Button>

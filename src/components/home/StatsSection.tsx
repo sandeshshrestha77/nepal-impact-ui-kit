@@ -52,13 +52,13 @@ const StatsSection = () => {
   ];
 
   return (
-    <section className="py-16 lg:py-24 bg-primary text-primary-foreground">
+    <section className="py-16 lg:py-24 bg-primary text-white">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12 animate-fade-in">
-          <h2 className="font-display text-3xl lg:text-h1 font-bold mb-4">
+          <h2 className="font-display text-3xl lg:text-h1 font-bold mb-4 text-white">
             Our Growing Impact Across Nepal
           </h2>
-          <p className="text-lg opacity-90 max-w-3xl mx-auto">
+          <p className="text-lg text-white/90 max-w-3xl mx-auto">
             Since our founding, we've been dedicated to creating measurable, sustainable change 
             in Nepal's entrepreneurial ecosystem. Every number represents real lives transformed 
             and communities strengthened.
@@ -71,7 +71,7 @@ const StatsSection = () => {
             return (
               <Card 
                 key={index} 
-                className="bg-primary-foreground/10 border-primary-foreground/20 text-primary-foreground hover-lift animate-fade-in"
+                className="bg-white/10 border-white/20 text-white hover-lift animate-fade-in backdrop-blur-sm"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <CardHeader className="text-center pb-4">
@@ -86,12 +86,12 @@ const StatsSection = () => {
                       {achievement.growth}
                     </Badge>
                   </div>
-                  <CardTitle className="font-display text-lg font-bold">
+                  <CardTitle className="font-display text-lg font-bold text-white">
                     {achievement.label}
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="text-center">
-                  <p className="text-sm opacity-80 leading-relaxed">
+                  <p className="text-sm text-white/80 leading-relaxed">
                     {achievement.description}
                   </p>
                 </CardContent>
@@ -101,16 +101,16 @@ const StatsSection = () => {
         </div>
 
         <div className="text-center mt-12 animate-fade-in">
-          <div className="bg-primary-foreground/5 rounded-xl p-8 max-w-2xl mx-auto">
-            <h3 className="font-display text-xl font-bold mb-3">
+          <div className="bg-white/5 rounded-xl p-8 max-w-2xl mx-auto backdrop-blur-sm">
+            <h3 className="font-display text-xl font-bold mb-3 text-white">
               Ready to Join These Success Stories?
             </h3>
-            <p className="opacity-90 mb-6">
+            <p className="text-white/90 mb-6">
               Whether you're an aspiring entrepreneur or want to support our mission, 
               there's a place for you in Nepal's economic transformation.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="outline" size="lg" className="bg-card/20 text-white border-white/30 hover:bg-white hover:text-primary" asChild>
+              <Button variant="outline" size="lg" className="bg-white/20 text-white border-white/30 hover:bg-white hover:text-primary" asChild>
                 <Link to="/get-involved">Start Your Journey</Link>
               </Button>
               <Button variant="cta" size="lg" asChild>

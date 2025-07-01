@@ -3,7 +3,6 @@ import Layout from '@/components/Layout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Link } from 'react-router-dom';
-import teamPlaceholderImage from '@/assets/team-placeholder.jpg';
 
 const Team = () => {
   const teamMembers = [
@@ -11,49 +10,49 @@ const Team = () => {
       name: "Dr. Sarah Johnson",
       title: "Founder & Executive Director",
       bio: "Dr. Johnson brings over 15 years of experience in international development and women's empowerment. She holds a PhD in Economics from Oxford University and has worked with organizations across South Asia.",
-      image: teamPlaceholderImage
+      initials: "SJ"
     },
     {
       name: "Rajesh Sharma",
       title: "Program Director",
       bio: "Rajesh leads our entrepreneurship programs with deep expertise in business development and startup ecosystems. He has successfully launched over 50 businesses across Nepal.",
-      image: teamPlaceholderImage
+      initials: "RS"
     },
     {
       name: "Priya Thapa",
       title: "Training Coordinator",
       bio: "Priya oversees all training initiatives and curriculum development. She is a certified business trainer with extensive experience in adult learning and skill development.",
-      image: teamPlaceholderImage
+      initials: "PT"
     },
     {
       name: "Michael Chen",
       title: "Strategic Advisor",
       bio: "Michael provides strategic guidance on international partnerships and funding. He has over 20 years of experience in nonprofit management and sustainable development.",
-      image: teamPlaceholderImage
+      initials: "MC"
     },
     {
       name: "Anita Gurung",
       title: "Community Outreach Manager",
       bio: "Anita connects our programs with communities across Nepal. She has a background in social work and deep understanding of rural development challenges.",
-      image: teamPlaceholderImage
+      initials: "AG"
     },
     {
       name: "David Wilson",
       title: "Financial Advisor",
       bio: "David manages our financial planning and ensures transparent use of resources. He is a certified accountant with expertise in nonprofit financial management.",
-      image: teamPlaceholderImage
+      initials: "DW"
     }
   ];
 
   return (
     <Layout>
       {/* Hero Banner */}
-      <section className="bg-primary text-primary-foreground py-16 lg:py-24">
+      <section className="bg-primary text-white py-16 lg:py-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center animate-fade-in">
-          <h1 className="font-display text-4xl lg:text-hero font-bold mb-6">
+          <h1 className="font-display text-4xl lg:text-hero font-bold mb-6 text-white">
             Meet Our Team
           </h1>
-          <p className="text-xl lg:text-2xl max-w-3xl mx-auto opacity-90">
+          <p className="text-xl lg:text-2xl max-w-3xl mx-auto text-white/90">
             Dedicated professionals working together to unlock Nepal's economic potential through entrepreneurship and innovation
           </p>
         </div>
@@ -71,11 +70,9 @@ const Team = () => {
               >
                 <CardHeader className="text-center pb-4">
                   <div className="mx-auto mb-4">
-                    <img 
-                      src={member.image}
-                      alt={`${member.name} - ${member.title}`}
-                      className="w-24 h-24 rounded-full object-cover mx-auto card-shadow"
-                    />
+                    <div className="w-24 h-24 rounded-full bg-primary/10 flex items-center justify-center mx-auto card-shadow">
+                      <span className="text-2xl font-bold text-primary">{member.initials}</span>
+                    </div>
                   </div>
                   <CardTitle className="font-display text-xl font-bold text-foreground">
                     {member.name}

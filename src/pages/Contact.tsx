@@ -49,12 +49,12 @@ const Contact = () => {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="bg-primary text-primary-foreground py-16 lg:py-24">
+      <section className="bg-primary text-white py-16 lg:py-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center animate-fade-in">
-          <h1 className="font-display text-4xl lg:text-hero font-bold mb-6">
+          <h1 className="font-display text-4xl lg:text-hero font-bold mb-6 text-white">
             Get in Touch
           </h1>
-          <p className="text-xl lg:text-2xl max-w-3xl mx-auto opacity-90">
+          <p className="text-xl lg:text-2xl max-w-3xl mx-auto text-white/90">
             We'd love to hear from you. Whether you have questions, want to get involved, or are interested in partnerships, we're here to help.
           </p>
         </div>
@@ -144,7 +144,7 @@ const Contact = () => {
               </div>
 
               <div className="space-y-6">
-                <Card className="soft-shadow border-0">
+                <Card className="card-shadow border-0">
                   <CardContent className="p-6">
                     <div className="flex items-start space-x-4">
                       <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
@@ -166,7 +166,7 @@ const Contact = () => {
                   </CardContent>
                 </Card>
 
-                <Card className="soft-shadow border-0">
+                <Card className="card-shadow border-0">
                   <CardContent className="p-6">
                     <div className="flex items-start space-x-4">
                       <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
@@ -185,7 +185,7 @@ const Contact = () => {
                   </CardContent>
                 </Card>
 
-                <Card className="soft-shadow border-0">
+                <Card className="card-shadow border-0">
                   <CardContent className="p-6">
                     <div className="flex items-start space-x-4">
                       <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">

@@ -5,28 +5,26 @@ import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "@/lib/utils"
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-smooth focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl text-sm font-semibold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
-        default: "bg-primary text-primary-foreground card-shadow hover:bg-primary/90 hover:scale-105",
-        destructive:
-          "bg-destructive text-destructive-foreground soft-shadow hover:bg-destructive/90",
-        outline:
-          "border border-border bg-card text-foreground soft-shadow hover:bg-muted hover:scale-105",
-        secondary:
-          "bg-secondary text-secondary-foreground soft-shadow hover:bg-secondary/80 hover:scale-105",
+        default: "bg-primary text-primary-foreground shadow-button hover:bg-primary/90 hover:shadow-lg hover:-translate-y-0.5",
+        destructive: "bg-destructive text-destructive-foreground shadow-button hover:bg-destructive/90",
+        outline: "border-2 border-border bg-background shadow-sm hover:bg-muted hover:border-primary/20 hover:text-foreground hover:-translate-y-0.5",
+        secondary: "bg-secondary text-secondary-foreground shadow-button hover:bg-secondary/90 hover:shadow-lg hover:-translate-y-0.5",
         ghost: "hover:bg-muted hover:text-foreground",
         link: "text-primary underline-offset-4 hover:underline",
-        hero: "bg-primary text-primary-foreground card-shadow hover:bg-primary-glow font-semibold text-base hover:scale-105",
-        cta: "bg-accent text-accent-foreground card-shadow hover:bg-accent/90 font-semibold hover:scale-105",
+        accent: "bg-accent text-accent-foreground shadow-button hover:bg-accent/90 hover:shadow-lg hover:-translate-y-0.5",
+        hero: "bg-gradient-to-r from-primary to-primary/80 text-primary-foreground shadow-premium hover:shadow-xl hover:-translate-y-1 hover:from-primary/90 hover:to-primary/70 font-semibold",
+        cta: "bg-gradient-to-r from-accent to-accent/80 text-accent-foreground shadow-premium hover:shadow-xl hover:-translate-y-1 hover:from-accent/90 hover:to-accent/70 font-semibold",
       },
       size: {
-        default: "h-10 px-4 py-2",
-        sm: "h-9 rounded-md px-3",
-        lg: "h-11 rounded-md px-8",
-        xl: "h-14 rounded-lg px-10 text-lg",
-        icon: "h-10 w-10",
+        default: "h-11 px-6 py-2",
+        sm: "h-9 rounded-lg px-4 text-xs",
+        lg: "h-12 rounded-xl px-8 text-base",
+        xl: "h-14 rounded-xl px-10 text-lg font-bold",
+        icon: "h-11 w-11",
       },
     },
     defaultVariants: {

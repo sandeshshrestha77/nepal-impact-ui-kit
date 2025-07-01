@@ -47,15 +47,15 @@ const GetInvolved = () => {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="bg-primary text-primary-foreground py-16 lg:py-24">
+      <section className="bg-primary text-white py-16 lg:py-24">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center animate-fade-in">
-          <h1 className="font-display text-4xl lg:text-hero font-bold mb-6">
+          <h1 className="font-display text-4xl lg:text-hero font-bold mb-6 text-white">
             Be Part of the Change
           </h1>
-          <p className="text-xl lg:text-2xl max-w-3xl mx-auto opacity-90 mb-8">
+          <p className="text-xl lg:text-2xl max-w-3xl mx-auto text-white/90 mb-8">
             Join us in unlocking Nepal's economic potential and creating opportunities for women entrepreneurs across the nation
           </p>
-          <Button variant="outline" size="xl" className="bg-card/20 text-white border-white/30 hover:bg-white hover:text-primary" asChild>
+          <Button variant="outline" size="xl" className="bg-white/10 text-white border-white/30 hover:bg-white hover:text-primary" asChild>
             <Link to="#opportunities">Explore Opportunities</Link>
           </Button>
         </div>

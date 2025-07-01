@@ -31,8 +31,6 @@ export default {
 				primary: {
 					DEFAULT: 'hsl(var(--primary))',
 					foreground: 'hsl(var(--primary-foreground))',
-					light: 'hsl(var(--primary-light))',
-					dark: 'hsl(var(--primary-dark))'
 				},
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
@@ -73,33 +71,6 @@ export default {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
-			},
-			fontSize: {
-				'responsive-xs': 'clamp(0.75rem, 0.7rem + 0.25vw, 0.875rem)',
-				'responsive-sm': 'clamp(0.875rem, 0.8rem + 0.375vw, 1rem)',
-				'responsive-base': 'clamp(1rem, 0.9rem + 0.5vw, 1.125rem)',
-				'responsive-lg': 'clamp(1.125rem, 1rem + 0.625vw, 1.25rem)',
-				'responsive-xl': 'clamp(1.25rem, 1.1rem + 0.75vw, 1.5rem)',
-				'responsive-2xl': 'clamp(1.5rem, 1.3rem + 1vw, 2rem)',
-				'responsive-3xl': 'clamp(1.875rem, 1.6rem + 1.375vw, 2.5rem)',
-				'responsive-4xl': 'clamp(2.25rem, 1.9rem + 1.75vw, 3rem)',
-				'responsive-5xl': 'clamp(3rem, 2.5rem + 2.5vw, 4rem)',
-			},
-			spacing: {
-				'18': '4.5rem',
-				'88': '22rem',
-			},
-			boxShadow: {
-				'subtle': '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
-				'clean': '0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)',
-			},
-			backgroundImage: {
-				'grid-pattern': 'linear-gradient(hsl(var(--border)) 1px, transparent 1px), linear-gradient(90deg, hsl(var(--border)) 1px, transparent 1px)',
-				'dot-pattern': 'radial-gradient(circle, hsl(var(--border)) 1px, transparent 1px)',
-			},
-			backgroundSize: {
-				'grid': '24px 24px',
-				'dot': '24px 24px',
 			},
 			keyframes: {
 				'accordion-down': {

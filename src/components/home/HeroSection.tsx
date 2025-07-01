@@ -2,13 +2,14 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, Users, TrendingUp, Award, Target, CheckCircle, Star } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 const HeroSection = () => {
   const stats = [
-    { icon: Users, value: "500+", label: "Women Empowered", color: "text-primary" },
-    { icon: TrendingUp, value: "150+", label: "Businesses Launched", color: "text-secondary" },
-    { icon: Award, value: "25+", label: "Training Programs", color: "text-accent" },
-    { icon: Target, value: "85%", label: "Success Rate", color: "text-primary" }
+    { icon: Users, value: "500+", label: "Women Empowered", color: "bg-primary" },
+    { icon: TrendingUp, value: "150+", label: "Businesses Launched", color: "bg-secondary" },
+    { icon: Award, value: "25+", label: "Training Programs", color: "bg-accent" },
+    { icon: Target, value: "85%", label: "Success Rate", color: "bg-primary" }
   ];
 
   const trustIndicators = [
@@ -19,9 +20,8 @@ const HeroSection = () => {
   ];
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-white overflow-hidden pt-18">
+    <section className="relative min-h-screen flex items-center justify-center bg-white overflow-hidden pt-20">
       {/* Subtle Background Elements */}
-      <div className="absolute inset-0 bg-dot-pattern opacity-[0.015]"></div>
       <div className="absolute top-20 right-10 w-72 h-72 bg-primary/5 rounded-full blur-3xl"></div>
       <div className="absolute bottom-20 left-10 w-96 h-96 bg-secondary/5 rounded-full blur-3xl"></div>
       
@@ -60,7 +60,7 @@ const HeroSection = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-16">
-              <Button variant="premium" size="xl" className="group shadow-premium" asChild>
+              <Button variant="default" size="xl" className="group shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all" asChild>
                 <Link to="/get-involved">
                   Start Your Journey Today
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -92,13 +92,11 @@ const HeroSection = () => {
                   <div className="stat-card group-hover:shadow-xl group-hover:-translate-y-2">
                     <div className={cn(
                       "w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-4 shadow-md",
-                      stat.color === "text-primary" && "bg-primary",
-                      stat.color === "text-secondary" && "bg-secondary", 
-                      stat.color === "text-accent" && "bg-accent"
+                      stat.color
                     )}>
                       <IconComponent className="h-7 w-7 text-white" />
                     </div>
-                    <div className={cn("stat-number", stat.color)}>
+                    <div className="stat-number">
                       {stat.value}
                     </div>
                     <div className="stat-label">

@@ -2,13 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Customer-Focused Design System - What I'd Want to See */
+/* Clean, Modern Design System */
 
 @layer base {
   :root {
-    /* Trust-Building Color Palette */
-    --background: 0 0% 100%; /* Pure White - Clean & Professional */
-    --foreground: 220 13% 18%; /* Deep Charcoal - Serious & Trustworthy */
+    /* Clean Color Palette */
+    --background: 0 0% 100%;
+    --foreground: 220 13% 18%;
 
     --card: 0 0% 100%;
     --card-foreground: 220 13% 18%;
@@ -16,21 +16,19 @@
     --popover: 0 0% 100%;
     --popover-foreground: 220 13% 18%;
 
-    /* Primary - Trustworthy Navy */
-    --primary: 220 100% 20%; /* Deep Navy - Professional & Reliable */
+    /* Primary - Professional Navy */
+    --primary: 220 100% 20%;
     --primary-foreground: 0 0% 100%;
-    --primary-light: 220 100% 30%;
-    --primary-dark: 220 100% 15%;
 
     /* Secondary - Success Green */
-    --secondary: 142 76% 36%; /* Professional Green - Growth & Success */
+    --secondary: 142 76% 36%;
     --secondary-foreground: 0 0% 100%;
 
     /* Accent - Warm Orange */
-    --accent: 24 100% 50%; /* Energetic Orange - Action & Impact */
+    --accent: 24 100% 50%;
     --accent-foreground: 0 0% 100%;
 
-    /* Neutral Grays - Clean & Modern */
+    /* Neutral Grays */
     --muted: 220 14% 96%;
     --muted-foreground: 220 9% 46%;
 
@@ -38,36 +36,10 @@
     --input: 220 13% 91%;
     --ring: 220 100% 20%;
 
-    /* Destructive */
     --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 98%;
 
     --radius: 0.75rem;
-
-    /* Premium Shadows */
-    --shadow-xs: 0 1px 2px 0 rgb(0 0 0 / 0.05);
-    --shadow-sm: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
-    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
-    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
-    --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
-
-    /* Typography Scale - Readable & Hierarchical */
-    --text-xs: 0.75rem;
-    --text-sm: 0.875rem;
-    --text-base: 1rem;
-    --text-lg: 1.125rem;
-    --text-xl: 1.25rem;
-    --text-2xl: 1.5rem;
-    --text-3xl: 1.875rem;
-    --text-4xl: 2.25rem;
-    --text-5xl: 3rem;
-    --text-6xl: 3.75rem;
-
-    /* Smooth Animations */
-    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
-    --ease-out: cubic-bezier(0, 0, 0.2, 1);
-    --ease-in: cubic-bezier(0.4, 0, 1, 1);
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -82,25 +54,18 @@
   .dark {
     --background: 220 13% 8%;
     --foreground: 220 14% 96%;
-
     --card: 220 13% 10%;
     --card-foreground: 220 14% 96%;
-
     --popover: 220 13% 10%;
     --popover-foreground: 220 14% 96%;
-
     --primary: 220 100% 30%;
     --primary-foreground: 220 13% 8%;
-
     --secondary: 142 76% 46%;
     --secondary-foreground: 220 13% 8%;
-
     --accent: 24 100% 60%;
     --accent-foreground: 220 13% 8%;
-
     --muted: 220 13% 15%;
     --muted-foreground: 220 9% 65%;
-
     --border: 220 13% 20%;
     --input: 220 13% 15%;
     --ring: 220 100% 30%;
@@ -114,123 +79,69 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
-    line-height: 1.6;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   }
 
-  /* Premium Typography */
-  .font-display {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    font-weight: 700;
-    letter-spacing: -0.025em;
-    line-height: 1.2;
-  }
-
-  .font-body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    line-height: 1.6;
-  }
-
-  /* Headings */
   h1, h2, h3, h4, h5, h6 {
-    @apply font-display text-foreground;
-    line-height: 1.2;
+    @apply font-bold text-foreground;
   }
 
-  h1 { @apply text-4xl lg:text-5xl xl:text-6xl; }
+  h1 { @apply text-4xl lg:text-5xl; }
   h2 { @apply text-3xl lg:text-4xl; }
   h3 { @apply text-2xl lg:text-3xl; }
   h4 { @apply text-xl lg:text-2xl; }
-  h5 { @apply text-lg lg:text-xl; }
-  h6 { @apply text-base lg:text-lg; }
 
-  /* Body Text */
   p {
     @apply text-muted-foreground leading-relaxed;
   }
+}
 
-  /* Links */
-  a {
-    @apply transition-colors duration-200;
-  }
-
-  /* Premium Utility Classes */
-  .shadow-premium {
-    box-shadow: var(--shadow-2xl);
-  }
-
-  .shadow-card {
-    box-shadow: var(--shadow-lg);
-  }
-
-  .shadow-button {
-    box-shadow: var(--shadow-md);
-  }
-
-  /* Smooth Animations */
+@layer components {
   .animate-fade-in {
-    animation: fade-in 0.8s var(--ease-out) forwards;
+    animation: fade-in 0.6s ease-out forwards;
   }
 
   .animate-slide-up {
-    animation: slide-up 0.8s var(--ease-out) forwards;
+    animation: slide-up 0.6s ease-out forwards;
   }
 
   .animate-scale-in {
-    animation: scale-in 0.6s var(--ease-out) forwards;
+    animation: scale-in 0.4s ease-out forwards;
   }
 
-  .animate-float {
-    animation: float 6s ease-in-out infinite;
-  }
-
-  /* Premium Hover Effects */
   .hover-lift {
-    transition: all 0.3s var(--ease-out);
+    transition: all 0.3s ease;
   }
 
   .hover-lift:hover {
     transform: translateY(-4px);
-    box-shadow: var(--shadow-xl);
+    box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
   }
 
-  .hover-scale {
-    transition: transform 0.3s var(--ease-out);
-  }
-
-  .hover-scale:hover {
-    transform: scale(1.02);
-  }
-
-  /* Trust-Building Elements */
-  .trust-badge {
-    @apply inline-flex items-center gap-2 px-4 py-2 bg-secondary/10 text-secondary rounded-full text-sm font-medium;
-  }
-
-  .impact-number {
-    @apply text-4xl lg:text-5xl font-bold text-primary;
+  .card-premium {
+    @apply bg-white rounded-2xl border border-border shadow-lg hover:shadow-xl transition-all duration-300;
   }
 
   .section-badge {
     @apply inline-flex items-center gap-2 px-3 py-1 bg-primary/10 text-primary rounded-full text-xs font-medium uppercase tracking-wider;
   }
 
-  /* Premium Card Styles */
-  .card-premium {
-    @apply bg-white rounded-2xl border border-border shadow-card hover:shadow-premium transition-all duration-300;
+  .stat-card {
+    @apply text-center p-6 bg-white rounded-xl border border-border shadow-md hover:shadow-lg transition-all duration-200;
   }
 
-  .card-feature {
-    @apply bg-white rounded-xl border border-border shadow-md hover:shadow-lg transition-all duration-200 hover:-translate-y-1;
+  .stat-number {
+    @apply text-3xl lg:text-4xl font-bold text-primary mb-2;
   }
 
-  /* Clean Focus States */
-  .focus-ring:focus-visible {
-    @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-background;
+  .stat-label {
+    @apply text-sm text-muted-foreground font-medium;
   }
 
-  /* Responsive Typography */
+  .cta-section {
+    @apply bg-gradient-to-br from-primary/5 via-white to-secondary/5 rounded-2xl border border-border p-8;
+  }
+
   .text-hero {
     font-size: clamp(2.5rem, 5vw, 4rem);
     line-height: 1.1;
@@ -241,45 +152,16 @@
     line-height: 1.2;
   }
 
-  .text-headline {
-    font-size: clamp(1.5rem, 3vw, 2.25rem);
-    line-height: 1.3;
-  }
-
   .text-body-lg {
     font-size: clamp(1.125rem, 2vw, 1.25rem);
     line-height: 1.6;
-  }
-
-  /* Clean Scrollbar */
-  ::-webkit-scrollbar {
-    width: 8px;
-  }
-
-  ::-webkit-scrollbar-track {
-    background: hsl(var(--muted));
-  }
-
-  ::-webkit-scrollbar-thumb {
-    background: hsl(var(--muted-foreground) / 0.3);
-    border-radius: 4px;
-  }
-
-  ::-webkit-scrollbar-thumb:hover {
-    background: hsl(var(--muted-foreground) / 0.5);
-  }
-
-  /* Selection */
-  ::selection {
-    background: hsl(var(--primary) / 0.2);
-    color: hsl(var(--primary));
   }
 }
 
 @keyframes fade-in {
   from {
     opacity: 0;
-    transform: translateY(30px);
+    transform: translateY(20px);
   }
   to {
     opacity: 1;
@@ -290,7 +172,7 @@
 @keyframes slide-up {
   from {
     opacity: 0;
-    transform: translateY(40px);
+    transform: translateY(30px);
   }
   to {
     opacity: 1;
@@ -301,7 +183,7 @@
 @keyframes scale-in {
   from {
     opacity: 0;
-    transform: scale(0.9);
+    transform: scale(0.95);
   }
   to {
     opacity: 1;
@@ -318,44 +200,6 @@
   }
 }
 
-/* Premium Grid Pattern */
-.grid-pattern {
-  background-image: 
-    linear-gradient(hsl(var(--border)) 1px, transparent 1px),
-    linear-gradient(90deg, hsl(var(--border)) 1px, transparent 1px);
-  background-size: 32px 32px;
-}
-
-/* Subtle Dot Pattern */
-.dot-pattern {
-  background-image: radial-gradient(circle, hsl(var(--border)) 1px, transparent 1px);
-  background-size: 32px 32px;
-}
-
-/* Trust Indicators */
-.trust-indicator {
-  @apply flex items-center gap-2 text-sm text-muted-foreground;
-}
-
-.trust-indicator::before {
-  content: '';
-  @apply w-2 h-2 bg-secondary rounded-full;
-}
-
-/* Call-to-Action Sections */
-.cta-section {
-  @apply bg-gradient-to-br from-primary/5 via-white to-secondary/5 rounded-2xl border border-border p-8 lg:p-12;
-}
-
-/* Stats Display */
-.stat-card {
-  @apply text-center p-6 bg-white rounded-xl border border-border shadow-md hover:shadow-lg transition-all duration-200;
-}
-
-.stat-number {
-  @apply text-3xl lg:text-4xl font-bold text-primary mb-2;
-}
-
-.stat-label {
-  @apply text-sm text-muted-foreground font-medium;
+.animate-float {
+  animation: float 6s ease-in-out infinite;
 }

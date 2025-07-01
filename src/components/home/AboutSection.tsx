@@ -2,8 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { CheckCircle, ArrowRight, Sparkles, Target } from 'lucide-react';
+import { CheckCircle, ArrowRight, Target } from 'lucide-react';
 
 const AboutSection = () => {
   const features = [
@@ -14,25 +13,18 @@ const AboutSection = () => {
   ];
 
   return (
-    <section className="py-24 lg:py-32 bg-gradient-to-br from-white via-slate-50/50 to-white relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-bl from-primary/5 to-transparent rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-secondary/5 to-transparent rounded-full blur-3xl"></div>
-      
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+    <section className="py-24 lg:py-32 bg-muted/30">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           {/* Content Side */}
-          <div className="animate-fade-up">
+          <div className="animate-fade-in">
             <div className="mb-6">
-              <Badge variant="outline" className="mb-4 bg-primary/5 text-primary border-primary/20">
-                <Sparkles className="w-3 h-3 mr-1" />
-                About Impact Initiative Nepal
-              </Badge>
+              <div className="inline-flex items-center gap-2 px-3 py-1 bg-primary/10 rounded-full mb-4">
+                <span className="text-xs font-medium text-primary uppercase tracking-wider">About Impact Initiative Nepal</span>
+              </div>
               <h2 className="text-responsive-4xl font-bold text-foreground mb-6 leading-tight">
                 Transforming Nepal's Economic Landscape Through{' '}
-                <span className="bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                  Strategic Empowerment
-                </span>
+                <span className="text-primary">Strategic Empowerment</span>
               </h2>
             </div>
             
@@ -50,7 +42,7 @@ const AboutSection = () => {
               </p>
             </div>
 
-            <div className="bg-gradient-to-r from-primary/5 to-secondary/5 rounded-2xl p-6 my-8 border border-primary/10">
+            <div className="bg-white rounded-xl p-6 my-8 border border-border shadow-subtle">
               <h3 className="font-semibold text-foreground mb-4 flex items-center">
                 <Target className="w-5 h-5 mr-2 text-primary" />
                 Our Core Focus Areas:
@@ -72,7 +64,7 @@ const AboutSection = () => {
             </p>
             
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button variant="gradient" size="lg" className="group" asChild>
+              <Button variant="default" size="lg" className="group" asChild>
                 <Link to="/about">
                   Discover Our Story
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
@@ -85,14 +77,13 @@ const AboutSection = () => {
           </div>
           
           {/* Visual Side */}
-          <div className="animate-fade-up delay-200">
+          <div className="animate-fade-in">
             <div className="relative">
               {/* Main Card */}
-              <Card className="relative overflow-hidden border-0 shadow-2xl">
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-secondary/5 to-accent/10"></div>
-                <CardContent className="relative p-8">
+              <Card className="relative overflow-hidden border-0 shadow-clean">
+                <CardContent className="p-8">
                   <div className="text-center">
-                    <div className="w-20 h-20 bg-gradient-to-br from-primary to-secondary rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                    <div className="w-20 h-20 bg-primary rounded-2xl flex items-center justify-center mx-auto mb-6">
                       <Target className="h-10 w-10 text-white" />
                     </div>
                     <h3 className="text-2xl font-bold text-foreground mb-4">
@@ -116,12 +107,8 @@ const AboutSection = () => {
                 </CardContent>
               </Card>
 
-              {/* Floating Elements */}
-              <div className="absolute -top-4 -right-4 w-24 h-24 bg-gradient-to-br from-accent/20 to-primary/20 rounded-full blur-xl animate-pulse"></div>
-              <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-gradient-to-tr from-secondary/20 to-accent/20 rounded-full blur-xl animate-pulse delay-1000"></div>
-              
               {/* Since Badge */}
-              <div className="absolute top-6 left-6 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-xl shadow-lg border border-white/50">
+              <div className="absolute top-6 left-6 bg-white px-4 py-2 rounded-lg shadow-subtle border border-border">
                 <div className="text-sm font-semibold text-primary">Since 2020</div>
               </div>
             </div>

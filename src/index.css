@@ -8,7 +8,7 @@ All colors MUST be HSL.
 
 @layer base {
   :root {
-    /* Brand Colors */
+    /* Brand Colors - Navy Blue Theme */
     --background: 35 35% 96%; /* Light Beige #F9F4EF */
     --foreground: 0 0% 17%; /* Deep Charcoal #2B2B2B */
 
@@ -18,20 +18,20 @@ All colors MUST be HSL.
     --popover: 0 0% 100%;
     --popover-foreground: 0 0% 17%;
 
-    /* Primary Terracotta */
-    --primary: 14 65% 55%; /* Warm terracotta from hero imagery */
+    /* Primary Navy Blue */
+    --primary: 219 75% 25%; /* Deep Navy Blue */
     --primary-foreground: 0 0% 98%;
-    --primary-glow: 14 70% 65%;
+    --primary-glow: 219 65% 35%;
 
-    /* Teal/Blue for buttons and highlights */
-    --secondary: 180 45% 45%; /* Teal blue */
+    /* Teal/Turquoise for buttons and highlights */
+    --secondary: 185 65% 45%; /* Bright teal */
     --secondary-foreground: 0 0% 98%;
 
-    /* Mustard Yellow accent */
+    /* Golden yellow accent for energy */
     --muted: 35 35% 96%;
     --muted-foreground: 0 0% 40%;
 
-    --accent: 45 85% 60%; /* Mustard yellow based on SDG icons */
+    --accent: 45 95% 55%; /* Vibrant golden yellow */
     --accent-foreground: 0 0% 17%;
 
     --destructive: 0 65% 55%;
@@ -39,21 +39,24 @@ All colors MUST be HSL.
 
     --border: 30 15% 85%;
     --input: 30 15% 90%;
-    --ring: 14 65% 55%;
+    --ring: 219 75% 25%;
 
     --radius: 0.375rem;
 
     /* Custom Design Tokens */
-    --hero-gradient: linear-gradient(135deg, hsl(var(--primary) / 0.9), hsl(var(--primary-glow) / 0.8));
-    --card-shadow: 0 4px 20px hsl(var(--primary) / 0.1);
-    --soft-shadow: 0 2px 10px hsl(0 0% 0% / 0.05);
+    --hero-gradient: linear-gradient(135deg, hsl(var(--primary) / 0.95), hsl(var(--primary-glow) / 0.9));
+    --secondary-gradient: linear-gradient(135deg, hsl(var(--secondary) / 0.9), hsl(var(--accent) / 0.8));
+    --card-shadow: 0 4px 20px hsl(var(--primary) / 0.12);
+    --soft-shadow: 0 2px 10px hsl(0 0% 0% / 0.06);
+    --glow-shadow: 0 0 30px hsl(var(--primary) / 0.15);
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-fast: all 0.2s ease-out;
     
     /* Typography scale */
-    --text-hero: 3.5rem;
-    --text-h1: 2.5rem;
-    --text-h2: 2rem;
-    --text-h3: 1.5rem;
+    --text-hero: 3.75rem;
+    --text-h1: 2.75rem;
+    --text-h2: 2.25rem;
+    --text-h3: 1.75rem;
     --text-body: 1rem;
     --text-small: 0.875rem;
 
@@ -85,16 +88,16 @@ All colors MUST be HSL.
     --popover: 0 0% 10%;
     --popover-foreground: 0 0% 95%;
 
-    --primary: 14 65% 55%;
+    --primary: 219 75% 35%;
     --primary-foreground: 0 0% 98%;
 
-    --secondary: 180 35% 35%;
+    --secondary: 185 55% 45%;
     --secondary-foreground: 0 0% 98%;
 
     --muted: 0 0% 15%;
     --muted-foreground: 0 0% 65%;
 
-    --accent: 45 75% 50%;
+    --accent: 45 85% 60%;
     --accent-foreground: 0 0% 8%;
 
     --destructive: 0 65% 55%;
@@ -102,7 +105,7 @@ All colors MUST be HSL.
 
     --border: 0 0% 20%;
     --input: 0 0% 15%;
-    --ring: 14 65% 55%;
+    --ring: 219 75% 35%;
   }
 }
 
@@ -129,6 +132,10 @@ All colors MUST be HSL.
     background: var(--hero-gradient);
   }
 
+  .secondary-gradient {
+    background: var(--secondary-gradient);
+  }
+
   .card-shadow {
     box-shadow: var(--card-shadow);
   }
@@ -137,7 +144,24 @@ All colors MUST be HSL.
     box-shadow: var(--soft-shadow);
   }
 
+  .glow-shadow {
+    box-shadow: var(--glow-shadow);
+  }
+
   .transition-smooth {
     transition: var(--transition-smooth);
+  }
+
+  .transition-fast {
+    transition: var(--transition-fast);
+  }
+
+  /* Enhanced hover effects */
+  .hover-lift {
+    @apply transition-smooth hover:scale-105 hover:shadow-lg;
+  }
+
+  .hover-glow {
+    @apply transition-smooth hover:shadow-xl;
   }
 }

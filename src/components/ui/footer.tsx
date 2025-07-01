@@ -178,16 +178,30 @@ const Footer = () => {
           </div>
         </div>
 
+        {/* Bottom Bar */}
         <div className="border-t border-white/20 mt-16 pt-10">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
             <div className="text-sm text-white/60 text-center md:text-left">
-              <p>&copy; 2024 Impact Initiative Nepal. All rights reserved.</p>
+              <p>&copy; {new Date().getFullYear()} Impact Initiative Nepal. All rights reserved.</p>
               <p className="mt-2">Registered Non-Profit Organization | Tax ID: [Number]</p>
             </div>
-            <div className="flex space-x-8 text-xs text-white/60">
-              <a href="#" className="hover:text-white/80 transition-smooth">Privacy Policy</a>
-              <a href="#" className="hover:text-white/80 transition-smooth">Terms of Service</a>
-              <a href="#" className="hover:text-white/80 transition-smooth">Annual Reports</a>
+            <div className="flex flex-col md:items-end text-center md:text-right space-y-2 text-xs text-white/60">
+              <div className="flex justify-center md:justify-end space-x-6">
+                <a href="#" className="hover:text-white/80 transition-smooth">Privacy Policy</a>
+                <a href="#" className="hover:text-white/80 transition-smooth">Terms of Service</a>
+                <a href="#" className="hover:text-white/80 transition-smooth">Annual Reports</a>
+              </div>
+              <div>
+                Made with <Heart className="inline-block h-4 w-4 text-red-500 mx-1" /> by{' '}
+                <a
+                  href="https://sandeshshrestha.xyz"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="underline hover:text-white"
+                >
+                  <b>Sandesh Shrestha</b>
+                </a>
+              </div>
             </div>
           </div>
         </div>

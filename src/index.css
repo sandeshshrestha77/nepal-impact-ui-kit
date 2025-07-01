@@ -90,10 +90,14 @@
     letter-spacing: -0.025em;
   }
 
-  h1 { @apply text-4xl lg:text-5xl leading-tight; }
-  h2 { @apply text-3xl lg:text-4xl leading-tight; }
-  h3 { @apply text-2xl lg:text-3xl leading-tight; }
-  h4 { @apply text-xl lg:text-2xl leading-tight; }
+  h1 { @apply text-4xl lg:text-5xl leading-tight mt-8 mb-6; }
+  h2 { @apply text-3xl lg:text-4xl leading-tight mt-8 mb-5; }
+  h3 { @apply text-2xl lg:text-3xl leading-tight mt-8 mb-4; }
+  h4 { @apply text-xl lg:text-2xl leading-tight mt-8 mb-3; }
+
+  h5, h6 {
+    @apply text-xl lg:text-2xl leading-tight;
+  }
 
   p {
     @apply text-muted-foreground leading-relaxed;

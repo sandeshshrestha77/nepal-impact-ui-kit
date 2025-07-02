@@ -68,7 +68,7 @@ const TestimonialsManager = () => {
     try {
       const { data, error } = await supabase
         .from('participants')
-        .select('id, full_name, email')
+        .select('*')
         .order('full_name');
 
       if (error) throw error;

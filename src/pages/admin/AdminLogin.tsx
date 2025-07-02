@@ -101,12 +101,6 @@ const AdminLogin = () => {
               {loading ? 'Signing in...' : 'Sign In'}
             </Button>
           </form>
-          
-          <div className="mt-6 text-center text-sm text-muted-foreground">
-            <p>Demo Credentials:</p>
-            <p>Username: impactinitiativenepal</p>
-            <p>Password: @impact2025</p>
-          </div>
         </CardContent>
       </Card>
     </div>

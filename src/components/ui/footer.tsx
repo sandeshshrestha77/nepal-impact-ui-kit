@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from './button';
 import { Input } from './input';
 import { Mail, MapPin, Heart, Award, TrendingUp } from 'lucide-react';
+import { supabase } from '@/lib/supabase';
+import { useToast } from '@/hooks/use-toast';
 
 const Footer = () => {
   const quickLinks = [
@@ -28,6 +30,63 @@ const Footer = () => {
     { name: 'Success Metrics', href: '#' }
   ];
 
+  // Newsletter subscribe state and handler
+  const [footerEmail, setFooterEmail] = useState('');
+  const [footerLoading, setFooterLoading] = useState(false);
+  const { toast } = useToast();
+
+  const handleFooterNewsletter = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!footerEmail) {
+      toast({
+        title: "Please enter your email",
+        description: "Email is required to subscribe to our newsletter.",
+        variant: "destructive"
+      });
+      return;
+    }
+    setFooterLoading(true);
+    try {
+      const { error } = await supabase
+        .from('newsletter_subscribers')
+        .insert([
+          {
+            email: footerEmail,
+            status: 'active',
+            source: 'footer'
+          }
+        ]);
+      if (error) {
+        if (
+          error.code === '23505' ||
+          (error.message && error.message.toLowerCase().includes('duplicate key'))
+        ) {
+          toast({
+            title: "Already Subscribed",
+            description: "This email is already subscribed to our newsletter.",
+            variant: "default"
+          });
+        } else {
+          throw error;
+        }
+      } else {
+        toast({
+          title: "Successfully subscribed!",
+          description: "Thank you for subscribing to our newsletter.",
+        });
+        setFooterEmail('');
+      }
+    } catch (error) {
+      toast({
+        title: "Error subscribing",
+        description: "Please try again later.",
+        variant: "destructive"
+      });
+    } finally {
+      setFooterLoading(false);
+    }
+  };
+
   return (
     <footer className="bg-primary text-white">
       <div className="professional-container py-20">
@@ -42,16 +101,19 @@ const Footer = () => {
               and insights from Nepal's growing entrepreneurial ecosystem. Join over 5,000 entrepreneurs 
               and supporters in our community.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto">
+            <form onSubmit={handleFooterNewsletter} className="flex flex-col sm:flex-row gap-4 max-w-lg mx-auto w-full">
               <Input 
                 type="email" 
                 placeholder="Enter your email address"
                 className="bg-white text-foreground border-white/30 flex-1 h-12"
+                value={footerEmail}
+                onChange={e => setFooterEmail(e.target.value)}
+                required
               />
-              <Button variant="cta" size="lg" className="hover-lift">
-                Subscribe Now
+              <Button variant="cta" size="lg" className="hover-lift" type="submit" disabled={footerLoading}>
+                {footerLoading ? 'Subscribing...' : 'Subscribe Now'}
               </Button>
-            </div>
+            </form>
             <p className="text-xs text-white/60 mt-4">
               We respect your privacy. Unsubscribe at any time.
             </p>

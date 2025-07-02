@@ -33,8 +33,8 @@ const AboutSection = () => {
   ];
 
   return (
-    <section className="py-24 lg:py-32 bg-muted/30">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="professional-spacing bg-muted/30">
+      <div className="professional-container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           {/* Content Side */}
           <div className="animate-fade-in">
@@ -62,31 +62,30 @@ const AboutSection = () => {
             </div>
 
             {/* Features Grid */}
-            <div className="grid grid-cols-1 gap-4 mb-8">
+            <div className="grid grid-cols-1 gap-2 mb-4">
               {features.map((feature, index) => {
                 const IconComponent = feature.icon;
                 return (
-                  <div key={index} className="flex items-start space-x-4 p-4 bg-white rounded-xl border border-border shadow-sm hover:shadow-md transition-all duration-200">
-                    <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center flex-shrink-0">
-                      <IconComponent className="w-6 h-6 text-primary" />
+                  <div key={index} className="flex items-center space-x-3 p-2 bg-white rounded-lg border border-border shadow-sm hover:shadow-md transition-all duration-200">
+                    <div className="w-7 h-7 bg-primary/10 rounded flex items-center justify-center flex-shrink-0">
+                      <IconComponent className="w-4 h-4 text-primary" />
                     </div>
-                    <div>
-                      <h4 className="font-semibold text-foreground mb-1">{feature.title}</h4>
-                      <p className="text-sm text-muted-foreground">{feature.description}</p>
+                    <div className="flex flex-col justify-center m-0">
+                      <h4 className="font-medium text-base text-foreground leading-tight m-0 p-0">{feature.title}</h4>
+                      <p className="text-xs text-muted-foreground leading-snug m-0 p-0">{feature.description}</p>
                     </div>
                   </div>
                 );
               })}
             </div>
 
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button variant="default" size="lg" className="group" asChild>
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2">
+              <Button variant="default" size="sm" className="group px-4 py-2 text-sm" asChild>
                 <Link to="/get-involved">
                   Apply for Next Cohort
-                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </Button>
-              <Button variant="outline" size="lg" asChild>
+              <Button variant="outline" size="sm" className="px-4 py-2 text-sm" asChild>
                 <Link to="/about">View Success Stories</Link>
               </Button>
             </div>

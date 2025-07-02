@@ -3,13 +3,27 @@ import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { CheckCircle, Clock, MapPin, Users, Calendar } from 'lucide-react';
+import { CheckCircle, Clock, MapPin, Users, Calendar, X } from 'lucide-react';
 import { supabase, type Program } from '@/lib/supabase';
 import { format } from 'date-fns';
 
 const ProgramsSection = () => {
   const [programs, setPrograms] = useState<Program[]>([]);
   const [loading, setLoading] = useState(true);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedProgram, setSelectedProgram] = useState<Program | null>(null);
+  const [form, setForm] = useState({
+    full_name: '',
+    email: '',
+    phone: '',
+    age: '',
+    location: '',
+    business_idea: '',
+    business_stage: 'idea',
+  });
+  const [formLoading, setFormLoading] = useState(false);
+  const [formSuccess, setFormSuccess] = useState('');
+  const [formError, setFormError] = useState('');
 
   useEffect(() => {
     fetchPrograms();
@@ -20,7 +34,7 @@ const ProgramsSection = () => {
       const { data, error } = await supabase
         .from('programs')
         .select('*')
-        .eq('status', 'upcoming')
+        .in('status', ['upcoming', 'ongoing'])
         .order('featured', { ascending: false })
         .order('created_at', { ascending: false })
         .limit(3);
@@ -34,10 +48,73 @@ const ProgramsSection = () => {
     }
   };
 
+  const openApplyModal = (program: Program) => {
+    setSelectedProgram(program);
+    setShowModal(true);
+    setForm({
+      full_name: '',
+      email: '',
+      phone: '',
+      age: '',
+      location: '',
+      business_idea: '',
+      business_stage: 'idea',
+    });
+    setFormSuccess('');
+    setFormError('');
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+    setSelectedProgram(null);
+    setFormSuccess('');
+    setFormError('');
+  };
+
+  const handleFormChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
+    setForm({ ...form, [e.target.name]: e.target.value });
+  };
+
+  const handleFormSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setFormLoading(true);
+    setFormSuccess('');
+    setFormError('');
+    try {
+      const { error } = await supabase.from('participants').insert([
+        {
+          full_name: form.full_name,
+          email: form.email,
+          phone: form.phone,
+          age: form.age ? parseInt(form.age) : null,
+          location: form.location,
+          business_idea: form.business_idea,
+          business_stage: form.business_stage,
+          program_id: selectedProgram?.id,
+        }
+      ]);
+      if (error) throw error;
+      setFormSuccess('Application submitted! We will contact you soon.');
+      setForm({
+        full_name: '',
+        email: '',
+        phone: '',
+        age: '',
+        location: '',
+        business_idea: '',
+        business_stage: 'idea',
+      });
+    } catch (err: any) {
+      setFormError('Error submitting application. Please try again.');
+    } finally {
+      setFormLoading(false);
+    }
+  };
+
   if (loading) {
     return (
-      <section className="py-16 lg:py-24 bg-background">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="professional-spacing bg-background">
+        <div className="professional-container">
           <div className="text-center">
             <p className="text-muted-foreground">Loading programs...</p>
           </div>
@@ -47,8 +124,8 @@ const ProgramsSection = () => {
   }
 
   return (
-    <section className="py-16 lg:py-24 bg-background">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="professional-spacing bg-background">
+      <div className="professional-container">
         <div className="text-center mb-12 animate-fade-in">
           <span className="text-primary font-semibold text-sm uppercase tracking-wider mb-2 block">Our Programs</span>
           <h2 className="font-display text-3xl lg:text-h1 font-bold text-foreground mb-4">
@@ -115,17 +192,67 @@ const ProgramsSection = () => {
                     variant={program.featured ? "hero" : "outline"} 
                     size="default" 
                     className="w-full hover-lift" 
-                    asChild
+                    onClick={() => openApplyModal(program)}
                   >
-                    <Link to="/get-involved">
-                      {program.featured ? "Apply Now" : "Learn More"}
-                    </Link>
+                    Apply
                   </Button>
                 </div>
               </CardContent>
             </Card>
           ))}
         </div>
+
+        {/* Modal for Application Form */}
+        {showModal && selectedProgram && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50">
+            <div className="bg-white rounded-lg shadow-lg max-w-lg w-full p-8 relative animate-fade-in">
+              <button onClick={closeModal} className="absolute top-4 right-4 text-gray-400 hover:text-gray-700">
+                <X className="h-6 w-6" />
+              </button>
+              <h3 className="font-display text-2xl font-bold mb-2 text-foreground">Apply for {selectedProgram.title}</h3>
+              <p className="text-muted-foreground mb-6">Fill out the form below to register for this program.</p>
+              <form onSubmit={handleFormSubmit} className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium mb-1">Full Name</label>
+                  <input type="text" name="full_name" value={form.full_name} onChange={handleFormChange} className="w-full border rounded px-3 py-2" required />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-1">Email</label>
+                  <input type="email" name="email" value={form.email} onChange={handleFormChange} className="w-full border rounded px-3 py-2" required />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-1">Phone</label>
+                  <input type="text" name="phone" value={form.phone} onChange={handleFormChange} className="w-full border rounded px-3 py-2" />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-1">Age</label>
+                  <input type="number" name="age" value={form.age} onChange={handleFormChange} className="w-full border rounded px-3 py-2" />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-1">Location</label>
+                  <input type="text" name="location" value={form.location} onChange={handleFormChange} className="w-full border rounded px-3 py-2" />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-1">Business Idea</label>
+                  <input type="text" name="business_idea" value={form.business_idea} onChange={handleFormChange} className="w-full border rounded px-3 py-2" />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium mb-1">Business Stage</label>
+                  <select name="business_stage" value={form.business_stage} onChange={handleFormChange} className="w-full border rounded px-3 py-2">
+                    <option value="idea">Idea</option>
+                    <option value="startup">Startup</option>
+                    <option value="existing">Existing</option>
+                  </select>
+                </div>
+                {formError && <div className="text-red-600 text-sm">{formError}</div>}
+                {formSuccess && <div className="text-green-600 text-sm">{formSuccess}</div>}
+                <Button type="submit" variant="hero" size="lg" className="w-full" disabled={formLoading}>
+                  {formLoading ? 'Submitting...' : 'Submit Application'}
+                </Button>
+              </form>
+            </div>
+          </div>
+        )}
 
         {/* Call to Action */}
         <div className="text-center animate-fade-in">

@@ -47,8 +47,8 @@ const GetInvolved = () => {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="bg-primary text-white py-16 lg:py-24">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center animate-fade-in">
+      <section className="bg-primary text-white professional-spacing">
+        <div className="professional-container text-center animate-fade-in">
           <h1 className="font-display text-4xl lg:text-hero font-bold mb-6 text-white">
             Be Part of the Change
           </h1>
@@ -62,8 +62,8 @@ const GetInvolved = () => {
       </section>
 
       {/* CTA Options Grid */}
-      <section id="opportunities" className="py-16 lg:py-24 bg-background">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="opportunities" className="professional-spacing bg-background">
+        <div className="professional-container">
           <div className="text-center mb-12 animate-fade-in">
             <h2 className="font-display text-3xl lg:text-h1 font-bold text-foreground mb-4">
               Ways to Get Involved
@@ -126,8 +126,8 @@ const GetInvolved = () => {
       </section>
 
       {/* Impact Stats */}
-      <section className="py-16 lg:py-24 bg-muted">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="professional-spacing bg-muted">
+        <div className="professional-container">
           <div className="text-center mb-12 animate-fade-in">
             <h2 className="font-display text-3xl lg:text-h1 font-bold text-foreground mb-4">
               Our Growing Impact
@@ -163,8 +163,8 @@ const GetInvolved = () => {
       </section>
 
       {/* Contact Form Section */}
-      <section className="py-16 lg:py-24 bg-background">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="professional-spacing bg-background">
+        <div className="professional-container">
           <div className="max-w-2xl mx-auto animate-fade-in">
             <div className="text-center mb-8">
               <h2 className="font-display text-3xl lg:text-h2 font-bold text-foreground mb-4">

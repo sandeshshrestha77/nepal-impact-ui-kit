@@ -15,12 +15,11 @@ import NotFound from "./pages/NotFound";
 // Admin imports
 import AdminLogin from "./pages/admin/AdminLogin";
 import AdminDashboard from "./pages/admin/AdminDashboard";
-import ParticipantsManager from "./pages/admin/ParticipantsManager";
-import ProgramsManager from "./pages/admin/ProgramsManager";
-import EventsManager from "./pages/admin/EventsManager";
-import TestimonialsManager from "./pages/admin/TestimonialsManager";
-import ContactFormsManager from "./pages/admin/ContactFormsManager";
-import NewsletterManager from "./pages/admin/NewsletterManager";
+import Participants from "./pages/admin/Participants";
+import Testimonials from "./pages/admin/Testimonials";
+import Programs from "./pages/admin/Programs";
+import ContactForms from "./pages/admin/ContactForms";
+import NewsletterSubscribers from "./pages/admin/NewsletterSubscribers";
 import AdminLayout from "./components/admin/AdminLayout";
 import ProtectedRoute from "./components/admin/ProtectedRoute";
 
@@ -50,12 +49,11 @@ const App = () => (
               </ProtectedRoute>
             }>
               <Route path="dashboard" element={<AdminDashboard />} />
-              <Route path="participants" element={<ParticipantsManager />} />
-              <Route path="programs" element={<ProgramsManager />} />
-              <Route path="events" element={<EventsManager />} />
-              <Route path="testimonials" element={<TestimonialsManager />} />
-              <Route path="contacts" element={<ContactFormsManager />} />
-              <Route path="newsletter" element={<NewsletterManager />} />
+              <Route path="participants" element={<Participants />} />
+              <Route path="testimonials" element={<Testimonials />} />
+              <Route path="programs" element={<Programs />} />
+              <Route path="contacts" element={<ContactForms />} />
+              <Route path="newsletter" element={<NewsletterSubscribers />} />
             </Route>
             
             {/* Catch-all route */}

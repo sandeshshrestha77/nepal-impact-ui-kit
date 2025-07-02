@@ -1,73 +1,113 @@
-# Welcome to your Lovable project
+# Impact Initiative Nepal
 
-## Project info
+A purpose-driven non-profit web platform committed to unlocking Nepal's economic potential through women entrepreneurship and local business empowerment. This project provides a modern, responsive UI for the Impact Initiative Nepal organization, featuring program management, participant engagement, and an admin dashboard.
 
-**URL**: https://lovable.dev/projects/26609e07-fd13-4b8d-a971-662ff5293dc2
+## Table of Contents
+- [Overview](#overview)
+- [Features](#features)
+- [Tech Stack](#tech-stack)
+- [Getting Started](#getting-started)
+- [Environment Variables](#environment-variables)
+- [Available Scripts](#available-scripts)
+- [Admin Panel](#admin-panel)
 
-## How can I edit this code?
+---
 
-There are several ways of editing your application.
+## Overview
+Impact Initiative Nepal (IIN) is a non-profit organization dedicated to transforming Nepal's economic landscape by empowering women entrepreneurs and local business communities. The platform supports the Government of Nepal's vision of becoming a middle-income country by 2030 through targeted programs, training, and strategic partnerships.
 
-**Use Lovable**
+## Features
+- **Comprehensive Training Programs:**
+  - Academy for Women Entrepreneurs (AWE) 12-week bootcamp
+  - Digital Skills Bootcamp
+  - Rural Entrepreneur Network
+- **Impact Pillars:**
+  - Accelerating Job Creation
+  - Unlocking Women's Economic Potential
+  - Empowering Local Economies
+  - Creating Skilled Workforce & Entrepreneurial Ecosystem
+  - Supporting Sustainable Development Goals (SDGs)
+- **Success Metrics:**
+  - 500+ women empowered since 2020
+  - 85% business success rate
+  - 150+ businesses launched
+  - 25+ training programs conducted
+- **Admin Dashboard:**
+  - Manage programs, participants, events, testimonials, contact forms, and newsletter subscribers
+  - Secure authentication for admin users
+- **Modern UI/UX:**
+  - Responsive, accessible, and professional design
+  - Built with React, TypeScript, and Tailwind CSS
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/26609e07-fd13-4b8d-a971-662ff5293dc2) and start prompting.
+## Tech Stack
+- **Frontend:** React 18, TypeScript
+- **UI Library:** shadcn/ui, Radix UI, Tailwind CSS
+- **State/Data:** React Query, React Context
+- **Backend:** Supabase (PostgreSQL, Auth, Storage)
+- **Routing:** React Router DOM
+- **Charts:** Recharts
+- **Other:** Vite, ESLint, PostCSS, Lucide Icons
 
-Changes made via Lovable will be committed automatically to this repo.
+## Getting Started
 
-**Use your preferred IDE**
+### Prerequisites
+- Node.js (v18+ recommended)
+- npm or bun
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Installation
+1. **Clone the repository:**
+   ```bash
+   git clone <repo-url>
+   cd nepal-impact-ui-kit
+   ```
+2. **Install dependencies:**
+   ```bash
+   npm install
+   # or
+   bun install
+   ```
+3. **Set up environment variables:**
+   - Create a `.env` file in the root directory with the following:
+     ```env
+     VITE_SUPABASE_URL=your_supabase_url
+     VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+     ```
+4. **Start the development server:**
+   ```bash
+   npm run dev
+   # or
+   bun run dev
+   ```
+   The app will be available at [http://localhost:8080](http://localhost:8080)
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## Environment Variables
+- `VITE_SUPABASE_URL`: Your Supabase project URL
+- `VITE_SUPABASE_ANON_KEY`: Your Supabase anon/public API key
 
-Follow these steps:
+## Available Scripts
+- `npm run dev` — Start the development server
+- `npm run build` — Build for production
+- `npm run preview` — Preview the production build
+- `npm run lint` — Run ESLint
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+## Admin Panel
+- **Access:** `/admin/login`
+- **Demo Credentials:**
+  - Username: ``
+  - Password: ``
+- **Features:**
+  - Dashboard with key stats
+  - Manage participants, programs, events, testimonials, contact forms, and newsletter subscribers
+  - Secure authentication and session management
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+## Folder Structure
+- `src/components/` — UI components (including admin and home sections)
+- `src/pages/` — Main pages (Home, About, Team, Contact, Admin, etc.)
+- `src/lib/` — Supabase client and utilities
+- `src/contexts/` — React context providers
+- `src/assets/` — Images and static assets
+- `public/` — Static files (favicon, robots.txt, etc.)
 
-# Step 3: Install the necessary dependencies.
-npm i
+---
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
-```
-
-**Edit a file directly in GitHub**
-
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
-
-**Use GitHub Codespaces**
-
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/26609e07-fd13-4b8d-a971-662ff5293dc2) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes, you can!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+> Empowering communities, one entrepreneur at a time.

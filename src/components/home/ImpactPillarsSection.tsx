@@ -32,8 +32,8 @@ const ImpactPillarsSection = () => {
   ];
 
   return (
-    <section className="py-16 lg:py-24 bg-background">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="professional-spacing bg-background">
+      <div className="professional-container">
         <div className="text-center mb-12 animate-fade-in">
           <h2 className="font-display text-3xl lg:text-h1 font-bold text-foreground mb-4">
             Our Impact Pillars

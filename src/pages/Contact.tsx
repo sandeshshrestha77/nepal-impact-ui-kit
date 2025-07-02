@@ -93,14 +93,24 @@ const Contact = () => {
           }
         ]);
 
-      if (error) throw error;
-
-      toast({
-        title: "Successfully subscribed!",
-        description: "Thank you for subscribing to our newsletter.",
-      });
-
-      setNewsletterEmail('');
+      if (error) {
+        // Check for unique violation (already subscribed)
+        if (error.code === '23505') {
+          toast({
+            title: "Already Subscribed",
+            description: "This email is already subscribed to our newsletter.",
+            variant: "default"
+          });
+        } else {
+          throw error;
+        }
+      } else {
+        toast({
+          title: "Successfully subscribed!",
+          description: "Thank you for subscribing to our newsletter.",
+        });
+        setNewsletterEmail('');
+      }
     } catch (error) {
       console.error('Error subscribing to newsletter:', error);
       toast({
@@ -123,8 +133,8 @@ const Contact = () => {
   return (
     <Layout>
       {/* Hero Section */}
-      <section className="bg-primary text-white py-16 lg:py-24">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center animate-fade-in">
+      <section className="bg-primary text-white professional-spacing">
+        <div className="professional-container text-center animate-fade-in">
           <h1 className="font-display text-4xl lg:text-hero font-bold mb-6 text-white">
             Get in Touch
           </h1>
@@ -135,8 +145,8 @@ const Contact = () => {
       </section>
 
       {/* Contact Content */}
-      <section className="py-16 lg:py-24 bg-background">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="professional-spacing bg-background">
+        <div className="professional-container">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
             {/* Contact Form */}
             <div className="animate-fade-in">

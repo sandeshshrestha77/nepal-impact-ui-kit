@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Link } from 'react-router-dom';
 import { Briefcase, Users, HandHeart, Award, CircleDollarSign } from 'lucide-react';
+import TestimonialsSection from '@/components/home/TestimonialsSection';
 
 const About = () => {
   const pillars = [
@@ -112,6 +113,9 @@ const About = () => {
           </div>
         </div>
       </section>
+
+      {/* Testimonials Section */}
+      <TestimonialsSection />
 
       {/* Call to Action */}
       <section className="professional-spacing bg-background">

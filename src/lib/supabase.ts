@@ -9,6 +9,17 @@ if (!supabaseUrl || !supabaseAnonKey) {
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
+// Create a separate client for admin operations using service role key
+const supabaseServiceKey = import.meta.env.VITE_SUPABASE_SERVICE_ROLE_KEY;
+export const supabaseAdmin = supabaseServiceKey 
+  ? createClient(supabaseUrl, supabaseServiceKey, {
+      auth: {
+        autoRefreshToken: false,
+        persistSession: false
+      }
+    })
+  : supabase; // Fallback to regular client if no service key
+
 // Admin authentication
 export const authenticateAdmin = async (username: string, password: string) => {
   try {
@@ -17,9 +28,36 @@ export const authenticateAdmin = async (username: string, password: string) => {
       password_input: password
     });
 
-    if (error) throw error;
+    if (error) {
+      console.error('RPC Error:', error);
+      throw error;
+    }
     
+    console.log('Auth response:', data);
     const result = data?.[0];
+    
+    if (result?.success) {
+      // Create a fake session for admin users
+      const adminSession = {
+        access_token: 'admin-token',
+        refresh_token: 'admin-refresh',
+        expires_in: 3600,
+        token_type: 'bearer',
+        user: {
+          id: result.user_id,
+          email: result.email,
+          user_metadata: {
+            username: result.username,
+            full_name: result.full_name,
+            role: result.role
+          }
+        }
+      };
+      
+      // Store admin session in localStorage for admin operations
+      localStorage.setItem('admin_session', JSON.stringify(adminSession));
+    }
+    
     return {
       success: result?.success || false,
       user: result?.success ? {
@@ -34,6 +72,29 @@ export const authenticateAdmin = async (username: string, password: string) => {
     console.error('Admin authentication error:', error);
     return { success: false, user: null };
   }
+};
+
+// Get admin client for CRUD operations
+export const getAdminClient = () => {
+  const adminSession = localStorage.getItem('admin_session');
+  if (adminSession && supabaseServiceKey) {
+    return supabaseAdmin;
+  }
+  
+  // If no service key, use regular client but set auth header
+  if (adminSession) {
+    const session = JSON.parse(adminSession);
+    return createClient(supabaseUrl, supabaseAnonKey, {
+      global: {
+        headers: {
+          'Authorization': `Bearer ${session.access_token}`,
+          'X-Admin-User': session.user.id
+        }
+      }
+    });
+  }
+  
+  return supabase;
 };
 
 // Database types

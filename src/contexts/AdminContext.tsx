@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { authenticateAdmin } from '@/lib/supabase';
 
 interface AdminUser {
   id: string;
@@ -10,72 +9,55 @@ interface AdminUser {
 }
 
 interface AdminContextType {
-  user: AdminUser | null;
-  isAuthenticated: boolean;
+  admin: AdminUser | null;
+  loading: boolean;
   login: (username: string, password: string) => Promise<boolean>;
   logout: () => void;
-  loading: boolean;
 }
 
 const AdminContext = createContext<AdminContextType | undefined>(undefined);
 
-export const useAdmin = () => {
-  const context = useContext(AdminContext);
-  if (context === undefined) {
-    throw new Error('useAdmin must be used within an AdminProvider');
-  }
-  return context;
-};
-
 export const AdminProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [user, setUser] = useState<AdminUser | null>(null);
+  const [admin, setAdmin] = useState<AdminUser | null>(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Check for stored admin session
-    const storedUser = localStorage.getItem('admin_user');
-    if (storedUser) {
-      try {
-        setUser(JSON.parse(storedUser));
-      } catch (error) {
-        localStorage.removeItem('admin_user');
-      }
+    const session = localStorage.getItem('admin_session');
+    if (session) {
+      const parsed = JSON.parse(session);
+      setAdmin(parsed.user);
     }
     setLoading(false);
   }, []);
 
-  const login = async (username: string, password: string): Promise<boolean> => {
+  const login = async (username: string, password: string) => {
+    // Replace with your real authentication logic
     try {
-      const result = await authenticateAdmin(username, password);
-      
-      if (result.success && result.user) {
-        setUser(result.user);
-        localStorage.setItem('admin_user', JSON.stringify(result.user));
+      const res = await import('@/lib/supabase').then(mod => mod.authenticateAdmin(username, password));
+      if (res.success && res.user) {
+        setAdmin(res.user);
         return true;
       }
       return false;
-    } catch (error) {
-      console.error('Login error:', error);
+    } catch {
       return false;
     }
   };
 
   const logout = () => {
-    setUser(null);
-    localStorage.removeItem('admin_user');
-  };
-
-  const value = {
-    user,
-    isAuthenticated: !!user,
-    login,
-    logout,
-    loading
+    localStorage.removeItem('admin_session');
+    setAdmin(null);
   };
 
   return (
-    <AdminContext.Provider value={value}>
+    <AdminContext.Provider value={{ admin, loading, login, logout }}>
       {children}
     </AdminContext.Provider>
   );
+};
+
+export const useAdmin = () => {
+  const ctx = useContext(AdminContext);
+  if (!ctx) throw new Error('useAdmin must be used within AdminProvider');
+  return ctx;
 };

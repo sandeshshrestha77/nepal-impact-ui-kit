@@ -47,8 +47,8 @@ const Team = () => {
   return (
     <Layout>
       {/* Hero Banner */}
-      <section className="bg-primary text-white py-16 lg:py-24">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 text-center animate-fade-in">
+      <section className="bg-primary text-white professional-spacing">
+        <div className="professional-container text-center animate-fade-in">
           <h1 className="font-display text-4xl lg:text-hero font-bold mb-6 text-white">
             Meet Our Team
           </h1>
@@ -59,8 +59,8 @@ const Team = () => {
       </section>
 
       {/* Team Grid */}
-      <section className="py-16 lg:py-24 bg-background">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="professional-spacing bg-background">
+        <div className="professional-container">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {teamMembers.map((member, index) => (
               <Card 
@@ -93,8 +93,8 @@ const Team = () => {
       </section>
 
       {/* Join Our Team CTA */}
-      <section className="py-16 lg:py-24 bg-muted">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="professional-spacing bg-muted">
+        <div className="professional-container">
           <div className="text-center animate-fade-in">
             <div className="bg-gradient-to-r from-primary/5 to-accent/5 rounded-xl p-8 lg:p-12 max-w-4xl mx-auto">
               <h3 className="font-display text-3xl lg:text-h2 font-bold text-foreground mb-4">
@@ -117,8 +117,8 @@ const Team = () => {
       </section>
 
       {/* Our Values */}
-      <section className="py-16 lg:py-24 bg-background">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+      <section className="professional-spacing bg-background">
+        <div className="professional-container">
           <div className="text-center mb-12 animate-fade-in">
             <h2 className="font-display text-3xl lg:text-h1 font-bold text-foreground mb-4">
               Our Values

@@ -1,112 +1,50 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { TrendingUp, Users, Award, Target, Globe, Heart } from 'lucide-react';
-import { supabase } from '@/lib/supabase';
 
 const StatsSection = () => {
-  const [stats, setStats] = useState({
-    participantsCount: 0,
-    businessesLaunched: 0,
-    programsCount: 0,
-    successRate: 0,
-    districtsReached: 0,
-    livesImpacted: 0
-  });
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetchStats();
-  }, []);
-
-  const fetchStats = async () => {
-    try {
-      // Fetch participants count
-      const { count: participantsCount } = await supabase
-        .from('participants')
-        .select('*', { count: 'exact', head: true });
-
-      // Fetch graduated participants (businesses launched)
-      const { count: businessesLaunched } = await supabase
-        .from('participants')
-        .select('*', { count: 'exact', head: true })
-        .eq('graduation_status', 'graduated');
-
-      // Fetch programs count
-      const { count: programsCount } = await supabase
-        .from('programs')
-        .select('*', { count: 'exact', head: true });
-
-      // Calculate success rate
-      const successRate = participantsCount > 0 ? Math.round((businessesLaunched / participantsCount) * 100) : 0;
-
-      // Fetch unique locations for districts reached
-      const { data: locations } = await supabase
-        .from('participants')
-        .select('location')
-        .not('location', 'is', null);
-
-      const uniqueDistricts = new Set(locations?.map(p => p.location?.split(',')[0]?.trim()) || []).size;
-
-      // Estimate lives impacted (participants * average family size)
-      const livesImpacted = participantsCount * 5; // Assuming average family size of 5
-
-      setStats({
-        participantsCount: participantsCount || 0,
-        businessesLaunched: businessesLaunched || 0,
-        programsCount: programsCount || 0,
-        successRate,
-        districtsReached: uniqueDistricts,
-        livesImpacted
-      });
-    } catch (error) {
-      console.error('Error fetching stats:', error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   const achievements = [
     {
       icon: Users,
-      number: loading ? "..." : `${stats.participantsCount}+`,
+      number: "500+",
       label: "Women Entrepreneurs Trained",
       description: "Comprehensive business training and mentorship programs",
       growth: "+40% this year"
     },
     {
       icon: TrendingUp,
-      number: loading ? "..." : `${stats.businessesLaunched}+`,
+      number: "150+",
       label: "Businesses Successfully Launched",
       description: "From startup to sustainable revenue generation",
       growth: "+65% growth rate"
     },
     {
       icon: Award,
-      number: loading ? "..." : `${stats.programsCount}+`,
+      number: "25+",
       label: "Training Programs Conducted",
       description: "Specialized workshops and bootcamps across Nepal",
       growth: "12 locations"
     },
     {
       icon: Target,
-      number: loading ? "..." : `${stats.successRate}%`,
+      number: "85%",
       label: "Business Success Rate",
       description: "Businesses still operating after 2 years",
       growth: "Industry leading"
     },
     {
       icon: Globe,
-      number: loading ? "..." : `${stats.districtsReached}`,
+      number: "12",
       label: "Districts Reached",
       description: "Expanding access across rural and urban Nepal",
       growth: "50% rural focus"
     },
     {
       icon: Heart,
-      number: loading ? "..." : `${stats.livesImpacted}+`,
+      number: "2,500+",
       label: "Lives Directly Impacted",
       description: "Including families and communities",
       growth: "Growing daily"

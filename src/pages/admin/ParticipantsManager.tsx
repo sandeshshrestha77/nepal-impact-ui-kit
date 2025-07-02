@@ -66,7 +66,7 @@ const ParticipantsManager = () => {
     try {
       const { data, error } = await supabase
         .from('programs')
-        .select('*')
+        .select('id, title')
         .order('title');
 
       if (error) throw error;

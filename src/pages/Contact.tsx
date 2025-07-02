@@ -7,21 +7,16 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Label } from '@/components/ui/label';
 import { Mail, MapPin, Phone } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-import { supabase } from '@/lib/supabase';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    subject: '',
     message: ''
   });
-  const [loading, setLoading] = useState(false);
-  const [newsletterEmail, setNewsletterEmail] = useState('');
-  const [newsletterLoading, setNewsletterLoading] = useState(false);
   const { toast } = useToast();
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
     // Basic validation
@@ -34,83 +29,14 @@ const Contact = () => {
       return;
     }
 
-    setLoading(true);
-    try {
-      const { error } = await supabase
-        .from('contact_submissions')
-        .insert([
-          {
-            name: formData.name,
-            email: formData.email,
-            subject: formData.subject || 'General Inquiry',
-            message: formData.message,
-            status: 'new'
-          }
-        ]);
+    // Here you would typically send the form data to your backend
+    toast({
+      title: "Message sent successfully!",
+      description: "Thank you for reaching out. We'll get back to you soon.",
+    });
 
-      if (error) throw error;
-
-      toast({
-        title: "Message sent successfully!",
-        description: "Thank you for reaching out. We'll get back to you soon.",
-      });
-
-      // Reset form
-      setFormData({ name: '', email: '', subject: '', message: '' });
-    } catch (error) {
-      console.error('Error submitting contact form:', error);
-      toast({
-        title: "Error sending message",
-        description: "Please try again or contact us directly by email.",
-        variant: "destructive"
-      });
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleNewsletterSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!newsletterEmail) {
-      toast({
-        title: "Please enter your email",
-        description: "Email is required to subscribe to our newsletter.",
-        variant: "destructive"
-      });
-      return;
-    }
-
-    setNewsletterLoading(true);
-    try {
-      const { error } = await supabase
-        .from('newsletter_subscribers')
-        .insert([
-          {
-            email: newsletterEmail,
-            status: 'active',
-            source: 'contact_page'
-          }
-        ]);
-
-      if (error) throw error;
-
-      toast({
-        title: "Successfully subscribed!",
-        description: "Thank you for subscribing to our newsletter.",
-      });
-
-      setNewsletterEmail('');
-    } catch (error) {
-      console.error('Error subscribing to newsletter:', error);
-      toast({
-        title: "Error subscribing",
-        description: "Please try again later.",
-        variant: "destructive"
-      });
-    } finally {
-      setNewsletterLoading(false);
-    }
+    // Reset form
+    setFormData({ name: '', email: '', message: '' });
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -184,21 +110,6 @@ const Contact = () => {
                     </div>
                     
                     <div className="space-y-2">
-                      <Label htmlFor="subject" className="text-foreground font-medium">
-                        Subject (Optional)
-                      </Label>
-                      <Input
-                        id="subject"
-                        name="subject"
-                        type="text"
-                        placeholder="What is this about?"
-                        value={formData.subject}
-                        onChange={handleInputChange}
-                        className="bg-background border-border"
-                      />
-                    </div>
-                    
-                    <div className="space-y-2">
                       <Label htmlFor="message" className="text-foreground font-medium">
                         Message
                       </Label>
@@ -213,8 +124,8 @@ const Contact = () => {
                       />
                     </div>
                     
-                    <Button type="submit" variant="hero" size="lg" className="w-full" disabled={loading}>
-                      {loading ? 'Sending...' : 'Send Message'}
+                    <Button type="submit" variant="hero" size="lg" className="w-full">
+                      Send Message
                     </Button>
                   </form>
                 </CardContent>
@@ -303,19 +214,16 @@ const Contact = () => {
                   <p className="text-muted-foreground mb-4">
                     Subscribe to our newsletter for the latest updates on our programs and impact.
                   </p>
-                  <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-3">
+                  <div className="flex flex-col sm:flex-row gap-3">
                     <Input 
                       type="email" 
                       placeholder="Enter your email"
-                      value={newsletterEmail}
-                      onChange={(e) => setNewsletterEmail(e.target.value)}
                       className="bg-background border-border"
-                      required
                     />
-                    <Button type="submit" variant="cta" size="default" disabled={newsletterLoading}>
-                      {newsletterLoading ? 'Subscribing...' : 'Subscribe'}
+                    <Button variant="cta" size="default">
+                      Subscribe
                     </Button>
-                  </form>
+                  </div>
                 </CardContent>
               </Card>
             </div>

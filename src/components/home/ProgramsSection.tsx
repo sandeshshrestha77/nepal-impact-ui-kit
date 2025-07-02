@@ -1,64 +1,50 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { CheckCircle, Clock, MapPin, Users, Calendar } from 'lucide-react';
+import { supabase, type Program } from '@/lib/supabase';
+import { format } from 'date-fns';
 
 const ProgramsSection = () => {
-  const programs = [
-    {
-      title: "Academy for Women Entrepreneurs (AWE)",
-      duration: "12 Weeks",
-      format: "Hybrid - Online & In-Person",
-      participants: "25-30 per cohort",
-      description: "Our flagship program providing comprehensive business training, mentorship, and networking opportunities for women entrepreneurs across Nepal.",
-      features: [
-        "Business plan development",
-        "Financial literacy & funding access",
-        "Digital marketing & e-commerce",
-        "Leadership & negotiation skills",
-        "Peer networking & mentorship",
-        "Graduation ceremony & certification"
-      ],
-      nextCohort: "March 2024",
-      featured: true
-    },
-    {
-      title: "Digital Skills Bootcamp",
-      duration: "6 Weeks",
-      format: "Online",
-      participants: "40-50 per session",
-      description: "Intensive training in digital literacy, social media marketing, and e-commerce platforms to help businesses reach online markets.",
-      features: [
-        "Social media marketing",
-        "E-commerce platform setup",
-        "Digital payment systems",
-        "Online customer service",
-        "Website basics",
-        "Digital security"
-      ],
-      nextCohort: "February 2024",
-      featured: false
-    },
-    {
-      title: "Rural Entrepreneur Network",
-      duration: "Ongoing",
-      format: "Community-based",
-      participants: "200+ active members",
-      description: "Supporting rural entrepreneurs with locally-relevant training, micro-financing connections, and market linkages.",
-      features: [
-        "Village-level training sessions",
-        "Micro-finance connections",
-        "Agricultural value chain support",
-        "Cooperative development",
-        "Market access facilitation",
-        "Mobile technology adoption"
-      ],
-      nextCohort: "Continuous intake",
-      featured: false
+  const [programs, setPrograms] = useState<Program[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchPrograms();
+  }, []);
+
+  const fetchPrograms = async () => {
+    try {
+      const { data, error } = await supabase
+        .from('programs')
+        .select('*')
+        .eq('status', 'upcoming')
+        .order('featured', { ascending: false })
+        .order('created_at', { ascending: false })
+        .limit(3);
+
+      if (error) throw error;
+      setPrograms(data || []);
+    } catch (error) {
+      console.error('Error fetching programs:', error);
+    } finally {
+      setLoading(false);
     }
-  ];
+  };
+
+  if (loading) {
+    return (
+      <section className="py-16 lg:py-24 bg-background">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <p className="text-muted-foreground">Loading programs...</p>
+          </div>
+        </div>
+      </section>
+    );
+  }
 
   return (
     <section className="py-16 lg:py-24 bg-background">
@@ -77,7 +63,7 @@ const ProgramsSection = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
           {programs.map((program, index) => (
             <Card 
-              key={index} 
+              key={program.id} 
               className={`card-shadow border-0 h-full hover-lift animate-fade-in ${
                 program.featured ? 'ring-2 ring-primary' : ''
               }`}
@@ -108,12 +94,14 @@ const ProgramsSection = () => {
                   </div>
                   <div className="flex items-center">
                     <Users className="h-4 w-4 mr-2 text-primary" />
-                    <span>{program.participants}</span>
+                    <span>{program.current_participants}/{program.max_participants} participants</span>
                   </div>
-                  <div className="flex items-center">
-                    <Calendar className="h-4 w-4 mr-2 text-primary" />
-                    <span>Next: {program.nextCohort}</span>
-                  </div>
+                  {program.start_date && (
+                    <div className="flex items-center">
+                      <Calendar className="h-4 w-4 mr-2 text-primary" />
+                      <span>Starts: {format(new Date(program.start_date), 'MMM dd, yyyy')}</span>
+                    </div>
+                  )}
                 </div>
               </CardHeader>
               
@@ -121,18 +109,6 @@ const ProgramsSection = () => {
                 <p className="text-muted-foreground leading-relaxed">
                   {program.description}
                 </p>
-                
-                <div>
-                  <h4 className="font-semibold text-foreground mb-3 text-sm">Program Highlights:</h4>
-                  <ul className="space-y-2">
-                    {program.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-start text-sm text-muted-foreground">
-                        <CheckCircle className="h-3 w-3 mr-2 mt-1 text-primary flex-shrink-0" />
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
                 
                 <div className="pt-4">
                   <Button 
